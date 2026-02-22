@@ -1,82 +1,59 @@
-import "./App.css";
+import { useEffect } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Header from './sections/Header';
+import Hero from './sections/Hero';
+import MostImportant from './sections/MostImportant';
+import CategoryGrid from './sections/CategoryGrid';
+import Sidebar from './sections/Sidebar';
+import Footer from './sections/Footer';
+import './App.css';
+
+gsap.registerPlugin(ScrollTrigger);
 
 function App() {
+  useEffect(() => {
+    // Initialize scroll animations
+    const sections = document.querySelectorAll('.animate-section');
+    sections.forEach((section) => {
+      gsap.fromTo(
+        section,
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: section,
+            start: 'top 85%',
+            toggleActions: 'play none none none',
+          },
+        }
+      );
+    });
+
+    return () => {
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    };
+  }, []);
+
   return (
-    <div className="container">
-
-      {/* HERO */}
-      <section className="hero">
-        <div className="hero-label">Valmark Intelligence Center</div>
-        <h1>
-          Think Tank для индустрии
-          <br /> обустройства пространства
-        </h1>
-        <p>
-          Мы переводим рыночные изменения в давление на управленческие решения:
-          маржа, логистика, сырьё, спрос, продукт.
-          Не новости. Не мнения. Управленческая аналитика.
-        </p>
-
-        <div className="hero-buttons">
-          <button className="primary">Получать Navigator</button>
-          <button className="secondary">Открыть архив</button>
-        </div>
-      </section>
-
-      {/* VALUE */}
-      <section className="section">
-        <h2>Что вы получаете</h2>
-        <ul>
-          <li>Сценарные коридоры (Base / Stress) и карту рисков</li>
-          <li>Экономические последствия для ролей</li>
-          <li>2 публикации в неделю по ключевым рубрикам</li>
-        </ul>
-      </section>
-
-      {/* PRODUCTS */}
-      <section className="section">
-        <h2>Продукты</h2>
-        <div className="grid">
-          <div className="card">
-            <h3>Value Briefings</h3>
-            <p>€120</p>
-            <span>Разовые прикладные отчёты под управленческую задачу</span>
-          </div>
-
-          <div className="card">
-            <h3>Navigator Solo</h3>
-            <p>€1.000 / год</p>
-            <span>Индивидуальный доступ к базе аналитики</span>
-          </div>
-
-          <div className="card">
-            <h3>Navigator Team</h3>
-            <p>€2.500 / год</p>
-            <span>Корпоративный доступ + шаблоны решений</span>
-          </div>
-
-          <div className="card">
-            <h3>Strategy-in-a-Box</h3>
-            <p>€3.000</p>
-            <span>Пакет для стратегической сессии компании</span>
+    <div className="min-h-screen bg-[#0A0A0A]">
+      <Header />
+      <main className="pt-[120px]">
+        <Hero />
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex gap-8">
+            <div className="flex-1">
+              <MostImportant />
+              <CategoryGrid />
+            </div>
+            <Sidebar />
           </div>
         </div>
-      </section>
-
-      {/* SUBSCRIBE */}
-      <section className="section">
-        <h2>Подписка</h2>
-        <p>Оставьте email — получите ближайший выпуск Navigator.</p>
-        <div className="subscribe">
-          <input type="email" placeholder="Email" />
-          <button className="primary">Отправить</button>
-        </div>
-      </section>
-
-      <footer>
-        © 2026 Valmark • Intelligence Center
-      </footer>
-
+      </main>
+      <Footer />
     </div>
   );
 }
