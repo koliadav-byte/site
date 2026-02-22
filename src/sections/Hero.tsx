@@ -97,11 +97,11 @@ export default function Hero() {
           </h1>
 
           <p className="hero-subtitle text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto mb-4">
-            Think Tank для индустрии обустройства пространства (СНГ и Европа)
+            Для индустрии обустройства пространства
           </p>
 
           <p className="hero-tagline text-lg text-[#C9A962] italic mb-10">
-            «Рынок → давление на решения собственника»
+            «Понимание рынка — самый дорогой актив.»
           </p>
 
                     <div className="hero-cta flex flex-col sm:flex-row items-center justify-center gap-4">
