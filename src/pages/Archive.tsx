@@ -1,38 +1,72 @@
 import Header from '../sections/Header';
 import Sidebar from '../sections/Sidebar';
 import Footer from '../sections/Footer';
-import LatestResearch from '../sections/LatestResearch';
+import { publications } from '../content/publications';
 
 export default function ArchivePage() {
+  const items = publications.filter((p) => p.type === 'research');
+
   return (
     <div className="min-h-screen bg-[#0A0A0A]">
       <Header />
+
       <main className="pt-[120px]">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-10">
-            <h1 className="text-4xl md:text-5xl font-bold text-white leading-tight">
-              Архив исследований
-            </h1>
-            <p className="text-gray-400 mt-3 max-w-3xl">
-              Все публикации Valmark по рубрикам: Macro-View, Future Habitat, Business Intelligence,
-              Heritage &amp; Code, Human Centric. Формат — управленческий смысл и экономические последствия.
-            </p>
-          </div>
-
           <div className="flex gap-8">
             <div className="flex-1">
-              <section id="archive">
-                <LatestResearch />
+              <section className="py-10 border-b border-gray-800">
+                <h1 className="text-3xl md:text-4xl font-bold text-white">Archive</h1>
+                <p className="text-gray-400 mt-2 max-w-2xl">
+                  Публикации и исследования Valmark. Формат: PDF + краткий управленческий смысл на странице.
+                </p>
               </section>
 
-              <section className="py-10 border-t border-gray-800">
-                <div className="bg-[#111111] border border-gray-800 rounded-2xl p-6">
-                  <h2 className="text-white font-bold text-xl mb-2">Далее</h2>
-                  <p className="text-gray-400 text-sm leading-relaxed">
-                    Здесь можно подключить реальный источник данных (Markdown/MDX, CMS, Notion-export или статический JSON),
-                    добавить фильтры по рубрикам и пагинацию. Сейчас блок — структурная “заглушка”, чтобы роутинг и UI работали.
-                  </p>
+              <section className="py-12">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {items.map((p) => (
+                    <div
+                      key={p.slug}
+                      className="bg-[#111111] border border-gray-800 rounded-2xl p-6 hover:border-[#C9A962]/30 transition-colors"
+                    >
+                      <div className="flex items-center justify-between gap-4">
+                        <span className="text-xs font-semibold px-3 py-1 rounded-full bg-[#C9A962]/15 text-[#C9A962] border border-[#C9A962]/25">
+                          {p.rubric}
+                        </span>
+                        <span className="text-xs text-gray-500">{p.date}</span>
+                      </div>
+
+                      <h3 className="text-white font-bold text-lg leading-snug mt-4">{p.title}</h3>
+                      <p className="text-gray-400 text-sm leading-relaxed mt-3">{p.summary}</p>
+
+                      {p.note && (
+                        <p className="text-gray-500 text-sm leading-relaxed mt-3">
+                          <span className="text-gray-300">Управленческий смысл: </span>
+                          {p.note}
+                        </p>
+                      )}
+
+                      <div className="mt-5 flex items-center gap-3">
+                        <a
+                          href={p.pdfUrl}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="inline-flex items-center justify-center px-4 py-2 rounded-lg bg-[#C9A962] text-[#0A0A0A] font-semibold hover:bg-[#B8984F] transition-colors text-sm"
+                        >
+                          Открыть PDF
+                        </a>
+                        <span className="text-xs text-gray-500">
+                          PDF хранится в репозитории: public/research
+                        </span>
+                      </div>
+                    </div>
+                  ))}
                 </div>
+
+                {items.length === 0 && (
+                  <div className="text-gray-400 mt-8">
+                    Пока нет опубликованных материалов. Добавьте PDF в public/research и запись в src/content/publications.ts
+                  </div>
+                )}
               </section>
             </div>
 
@@ -40,6 +74,7 @@ export default function ArchivePage() {
           </div>
         </div>
       </main>
+
       <Footer />
     </div>
   );

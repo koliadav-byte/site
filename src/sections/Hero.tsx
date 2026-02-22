@@ -147,27 +147,6 @@ export default function Hero() {
           })}
         </div>
 
-        {/* Stats */}
-        <div className="mt-16 pt-8 border-t border-gray-800">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {[
-              { value: '15+', label: 'Лет исследований' },
-              { value: '500+', label: 'Проектов' },
-              { value: '200+', label: 'Клиентов' },
-              { value: '50+', label: 'Экспертов' },
-            ].map((stat, index) => (
-              <a
-                key={index}
-                href="/#rubrics"
-                className="research-card text-center block">
-                <div className="text-3xl md:text-4xl font-bold text-[#C9A962] mb-2">
-                  {stat.value}
-                </div>
-                <div className="text-sm text-gray-500">{stat.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
       </div>
     </section>
   );

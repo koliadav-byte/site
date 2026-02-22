@@ -1,67 +1,76 @@
 import Header from '../sections/Header';
 import Sidebar from '../sections/Sidebar';
 import Footer from '../sections/Footer';
-import MostImportant from '../sections/MostImportant';
+import { publications } from '../content/publications';
 
 export default function NavigatorPage() {
+  const items = publications.filter((p) => p.type === 'navigator');
+
   return (
     <div className="min-h-screen bg-[#0A0A0A]">
       <Header />
+
       <main className="pt-[120px]">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-10">
-            <h1 className="text-4xl md:text-5xl font-bold text-white leading-tight">
-              Valmark Navigator
-            </h1>
-            <p className="text-gray-400 mt-3 max-w-3xl">
-              Ежемесячный управленческий синтез для собственников и топ-менеджмента.
-              Сценарный коридор (Base/Stress), Risk Map и Hidden Loss Map — в логике решений, а не “обзора рынка”.
-            </p>
-
-            <div className="mt-6 flex flex-wrap gap-3">
-              <a
-                href="/#subscribe"
-                className="inline-flex items-center gap-2 bg-[#C9A962] hover:bg-[#B8984F] text-[#0A0A0A] font-semibold px-6 py-3 rounded-lg transition-colors"
-              >
-                Получать Navigator
-              </a>
-              <a
-                href="/archive"
-                className="inline-flex items-center gap-2 bg-[#111111] border border-gray-800 hover:border-[#C9A962]/40 text-gray-200 px-6 py-3 rounded-lg transition-colors"
-              >
-                Смотреть архив
-              </a>
-            </div>
-          </div>
-
           <div className="flex gap-8">
             <div className="flex-1">
-              {/* Reuse the “Navigator center” slider as a preview of issues */}
-              <MostImportant />
+              <section className="py-10 border-b border-gray-800">
+                <h1 className="text-3xl md:text-4xl font-bold text-white">Valmark Navigator</h1>
+                <p className="text-gray-400 mt-2 max-w-2xl">
+                  Ежемесячный управленческий синтез для собственников и топ-менеджмента.
+                  Формат: PDF + краткий смысл.
+                </p>
+              </section>
 
-              <section className="py-12 border-t border-gray-800">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  <div className="bg-[#111111] border border-gray-800 rounded-2xl p-6">
-                    <h2 className="text-white font-bold text-lg mb-2">Что внутри</h2>
-                    <p className="text-gray-400 text-sm leading-relaxed">
-                      5 неизбежных решений, сценарные диапазоны эффектов, карта взаимосвязанных рисков и “скрытые потери”
-                      по ролям: собственник, закупки, коммерция, производство.
-                    </p>
-                  </div>
-                  <div className="bg-[#111111] border border-gray-800 rounded-2xl p-6">
-                    <h2 className="text-white font-bold text-lg mb-2">Кому</h2>
-                    <p className="text-gray-400 text-sm leading-relaxed">
-                      Собственникам и директорам, которые управляют маржой и оборотным капиталом в мебельной промышленности,
-                      девелопменте и индустрии материалов.
-                    </p>
-                  </div>
-                  <div className="bg-[#111111] border border-gray-800 rounded-2xl p-6">
-                    <h2 className="text-white font-bold text-lg mb-2">Доступ</h2>
-                    <p className="text-gray-400 text-sm leading-relaxed">
-                      Navigator (Solo/Team) + Briefings. Подключим оплату/доступ позже — сейчас делаем структуру и маршрутизацию.
-                    </p>
-                  </div>
+              <section className="py-12">
+                <div className="space-y-6">
+                  {items.map((p) => (
+                    <div
+                      key={p.slug}
+                      className="bg-[#111111] border border-gray-800 rounded-2xl p-6 hover:border-[#C9A962]/30 transition-colors"
+                    >
+                      <div className="flex items-center justify-between gap-4">
+                        <span className="text-xs font-semibold px-3 py-1 rounded-full bg-[#C9A962]/15 text-[#C9A962] border border-[#C9A962]/25">
+                          {p.rubric}
+                        </span>
+                        <span className="text-xs text-gray-500">{p.date}</span>
+                      </div>
+
+                      <h3 className="text-white font-bold text-lg leading-snug mt-4">{p.title}</h3>
+                      <p className="text-gray-400 text-sm leading-relaxed mt-3">{p.summary}</p>
+
+                      {p.note && (
+                        <p className="text-gray-500 text-sm leading-relaxed mt-3">
+                          <span className="text-gray-300">Управленческий смысл: </span>
+                          {p.note}
+                        </p>
+                      )}
+
+                      <div className="mt-5 flex items-center gap-3">
+                        <a
+                          href={p.pdfUrl}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="inline-flex items-center justify-center px-4 py-2 rounded-lg bg-[#C9A962] text-[#0A0A0A] font-semibold hover:bg-[#B8984F] transition-colors text-sm"
+                        >
+                          Открыть PDF
+                        </a>
+                        <a
+                          href="/#subscribe"
+                          className="inline-flex items-center justify-center px-4 py-2 rounded-lg border border-gray-700 text-gray-200 hover:border-[#C9A962]/40 hover:text-white transition-colors text-sm"
+                        >
+                          Получить выпуск
+                        </a>
+                      </div>
+                    </div>
+                  ))}
                 </div>
+
+                {items.length === 0 && (
+                  <div className="text-gray-400 mt-8">
+                    Пока нет опубликованных выпусков. Добавьте PDF в public/research и запись в src/content/publications.ts
+                  </div>
+                )}
               </section>
             </div>
 
@@ -69,6 +78,7 @@ export default function NavigatorPage() {
           </div>
         </div>
       </main>
+
       <Footer />
     </div>
   );
