@@ -109,7 +109,7 @@ export default function Hero() {
               asChild
               className="bg-[#C9A962] hover:bg-[#B8984F] text-[#0A0A0A] px-8 py-6 text-base font-semibold rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-[#C9A962]/20 hover:scale-[1.02]"
             >
-              <a href="#navigator">
+              <a href="/navigator">
                 Получать Navigator
                 <ArrowRight className="w-4 h-4 ml-2" />
               </a>
@@ -120,7 +120,7 @@ export default function Hero() {
               variant="outline"
               className="border-gray-700 text-gray-300 hover:bg-gray-800 hover:text-white px-8 py-6 text-base rounded-lg transition-all duration-300"
             >
-              <a href="#latest">Открыть архив</a>
+              <a href="/archive">Открыть архив</a>
             </Button>
           </div>
         </div>
@@ -132,7 +132,7 @@ export default function Hero() {
             return (
               <a
                 key={index}
-                href="#rubrics"
+                href="/#rubrics"
                 className="research-card group p-6 bg-[#111111] border border-gray-800 rounded-xl hover:border-[#C9A962]/50 hover:bg-[#161616] transition-all duration-300 cursor-pointer block"
               >
                 <div className="w-12 h-12 bg-[#C9A962]/10 rounded-lg flex items-center justify-center mb-4 group-hover:bg-[#C9A962]/20 transition-colors">
@@ -158,7 +158,7 @@ export default function Hero() {
             ].map((stat, index) => (
               <a
                 key={index}
-                href="#rubrics"
+                href="/#rubrics"
                 className="research-card text-center block">
                 <div className="text-3xl md:text-4xl font-bold text-[#C9A962] mb-2">
                   {stat.value}

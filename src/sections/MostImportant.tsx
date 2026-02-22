@@ -84,7 +84,7 @@ export default function MostImportant() {
           </div>
 
           <a
-            href="#subscribe"
+            href="/#subscribe"
             className="inline-flex items-center gap-2 bg-[#111111] border border-gray-800 hover:border-[#C9A962]/40 text-gray-200 px-5 py-3 rounded-lg transition-colors text-sm font-medium"
           >
             Получить выпуск

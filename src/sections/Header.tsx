@@ -1,23 +1,24 @@
 import { useState, useEffect } from 'react';
 import { gsap } from 'gsap';
 import { Search, Menu, X } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
-type NavItem = { label: string; href: string };
+type NavItem = { label: string; to: string };
 
 const mainNavItems: NavItem[] = [
-  { label: 'О нас', href: '#what-we-do' },
-  { label: 'Исследования', href: '#latest' },
-  { label: 'Доступ', href: '#products' },
-  { label: 'Календарь', href: '#calendar' },
-  { label: 'Контакты', href: '#subscribe' },
+  { label: 'О нас', to: '/#what-we-do' },
+  { label: 'Исследования', to: '/archive' },
+  { label: 'Navigator', to: '/navigator' },
+  { label: 'Доступ', to: '/#products' },
+  { label: 'Контакты', to: '/#subscribe' },
 ];
 
 const subNavItems: NavItem[] = [
-  { label: 'Macro-View', href: '#rubrics' },
-  { label: 'Future Habitat', href: '#rubrics' },
-  { label: 'Business Intelligence', href: '#rubrics' },
-  { label: 'Heritage & Code', href: '#rubrics' },
-  { label: 'Human Centric', href: '#rubrics' },
+  { label: 'Macro-View', to: '/#rubrics' },
+  { label: 'Future Habitat', to: '/#rubrics' },
+  { label: 'Business Intelligence', to: '/#rubrics' },
+  { label: 'Heritage & Code', to: '/#rubrics' },
+  { label: 'Human Centric', to: '/#rubrics' },
 ];
 
 export default function Header() {
@@ -74,7 +75,7 @@ export default function Header() {
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-[70px]">
             {/* Logo */}
-            <a href="#top" className="logo flex items-center gap-3">
+            <Link to="/#top" className="logo flex items-center gap-3" onClick={closeMobileMenu}>
               <div className="w-10 h-10 bg-gradient-to-br from-[#C9A962] to-[#8B7355] rounded flex items-center justify-center">
                 <span className="text-white font-bold text-sm">V</span>
               </div>
@@ -84,19 +85,19 @@ export default function Header() {
                   Think Tank
                 </span>
               </div>
-            </a>
+            </Link>
 
             {/* Desktop Main Nav */}
             <nav className="hidden lg:flex items-center gap-8">
               {mainNavItems.map((item) => (
-                <a
+                <Link
                   key={item.label}
-                  href={item.href}
+                  to={item.to}
                   className="nav-item text-sm text-gray-300 hover:text-[#C9A962] transition-colors relative group"
                 >
                   {item.label}
                   <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#C9A962] transition-all duration-300 group-hover:w-full" />
-                </a>
+                </Link>
               ))}
             </nav>
 
@@ -141,16 +142,16 @@ export default function Header() {
             </span>
 
             {subNavItems.map((item) => (
-              <a
+              <Link
                 key={item.label}
-                href={item.href}
+                to={item.to}
                 className="nav-item whitespace-nowrap px-4 py-2 text-sm transition-all duration-300 rounded-lg group"
               >
                 <span className="text-[#C9A962] font-medium">{item.label}</span>
                 <span className="text-gray-500 ml-2 text-xs group-hover:text-gray-300 transition-colors">
                   Перейти
                 </span>
-              </a>
+              </Link>
             ))}
           </nav>
         </div>
@@ -166,15 +167,15 @@ export default function Header() {
               </h3>
               <div className="space-y-3">
                 {subNavItems.map((item) => (
-                  <a
+                  <Link
                     key={item.label}
-                    href={item.href}
+                    to={item.to}
                     onClick={closeMobileMenu}
                     className="block py-3 border-b border-gray-800"
                   >
                     <span className="text-white font-medium block">{item.label}</span>
                     <span className="text-gray-500 text-sm">Перейти к рубрикам</span>
-                  </a>
+                  </Link>
                 ))}
               </div>
             </div>
@@ -185,14 +186,14 @@ export default function Header() {
               </h3>
               <div className="space-y-3">
                 {mainNavItems.map((item) => (
-                  <a
+                  <Link
                     key={item.label}
-                    href={item.href}
+                    to={item.to}
                     onClick={closeMobileMenu}
                     className="block py-2 text-gray-300 hover:text-[#C9A962] transition-colors"
                   >
                     {item.label}
-                  </a>
+                  </Link>
                 ))}
               </div>
             </div>
