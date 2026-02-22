@@ -2,20 +2,22 @@ import { useState, useEffect } from 'react';
 import { gsap } from 'gsap';
 import { Search, Menu, X } from 'lucide-react';
 
-const mainNavItems = [
-  'О нас',
-  'Исследования',
-  'Консалтинг',
-  'Мероприятия',
-  'Контакты',
+type NavItem = { label: string; href: string };
+
+const mainNavItems: NavItem[] = [
+  { label: 'О нас', href: '#what-we-do' },
+  { label: 'Исследования', href: '#latest' },
+  { label: 'Доступ', href: '#products' },
+  { label: 'Календарь', href: '#calendar' },
+  { label: 'Контакты', href: '#subscribe' },
 ];
 
-const subNavItems = [
-  { name: 'Macro-View', value: 'Макроанализ' },
-  { name: 'Future Habitat', value: 'Недвижимость' },
-  { name: 'Business Intelligence', value: 'Бизнес' },
-  { name: 'Heritage & Code', value: 'Наследие' },
-  { name: 'Human Centric', value: 'Люди' },
+const subNavItems: NavItem[] = [
+  { label: 'Macro-View', href: '#rubrics' },
+  { label: 'Future Habitat', href: '#rubrics' },
+  { label: 'Business Intelligence', href: '#rubrics' },
+  { label: 'Heritage & Code', href: '#rubrics' },
+  { label: 'Human Centric', href: '#rubrics' },
 ];
 
 export default function Header() {
@@ -23,10 +25,7 @@ export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-
+    const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -58,6 +57,8 @@ export default function Header() {
       );
   }, []);
 
+  const closeMobileMenu = () => setIsMobileMenuOpen(false);
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -73,25 +74,27 @@ export default function Header() {
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-[70px]">
             {/* Logo */}
-            <a href="/" className="logo flex items-center gap-3">
+            <a href="#top" className="logo flex items-center gap-3">
               <div className="w-10 h-10 bg-gradient-to-br from-[#C9A962] to-[#8B7355] rounded flex items-center justify-center">
                 <span className="text-white font-bold text-sm">V</span>
               </div>
               <div className="flex flex-col">
                 <span className="text-xl font-bold text-white tracking-wide">VALMARK</span>
-                <span className="text-[10px] text-[#C9A962] tracking-[0.2em] uppercase">Think Tank</span>
+                <span className="text-[10px] text-[#C9A962] tracking-[0.2em] uppercase">
+                  Think Tank
+                </span>
               </div>
             </a>
 
             {/* Desktop Main Nav */}
             <nav className="hidden lg:flex items-center gap-8">
-              {mainNavItems.map((item, index) => (
+              {mainNavItems.map((item) => (
                 <a
-                  key={index}
-                  href="#"
+                  key={item.label}
+                  href={item.href}
                   className="nav-item text-sm text-gray-300 hover:text-[#C9A962] transition-colors relative group"
                 >
-                  {item}
+                  {item.label}
                   <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#C9A962] transition-all duration-300 group-hover:w-full" />
                 </a>
               ))}
@@ -99,14 +102,20 @@ export default function Header() {
 
             {/* Right Side Actions */}
             <div className="flex items-center gap-4">
-              <button className="p-2 hover:bg-gray-800 rounded-full transition-colors">
+              <button
+                type="button"
+                className="p-2 hover:bg-gray-800 rounded-full transition-colors"
+                aria-label="Search"
+              >
                 <Search className="w-5 h-5 text-gray-300" />
               </button>
 
               {/* Mobile Menu Button */}
               <button
+                type="button"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 className="lg:hidden p-2 hover:bg-gray-800 rounded-full transition-colors"
+                aria-label="Menu"
               >
                 {isMobileMenuOpen ? (
                   <X className="w-5 h-5 text-gray-300" />
@@ -127,16 +136,19 @@ export default function Header() {
       >
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
           <nav className="flex items-center gap-1 h-[50px] overflow-x-auto scrollbar-hide">
-            <span className="text-xs text-gray-500 mr-4 uppercase tracking-wider">Направления:</span>
-            {subNavItems.map((item, index) => (
+            <span className="text-xs text-gray-500 mr-4 uppercase tracking-wider">
+              Направления:
+            </span>
+
+            {subNavItems.map((item) => (
               <a
-                key={index}
-                href="#"
+                key={item.label}
+                href={item.href}
                 className="nav-item whitespace-nowrap px-4 py-2 text-sm transition-all duration-300 rounded-lg group"
               >
-                <span className="text-[#C9A962] font-medium">{item.name}</span>
+                <span className="text-[#C9A962] font-medium">{item.label}</span>
                 <span className="text-gray-500 ml-2 text-xs group-hover:text-gray-300 transition-colors">
-                  {item.value}
+                  Перейти
                 </span>
               </a>
             ))}
@@ -153,14 +165,15 @@ export default function Header() {
                 Направления исследований
               </h3>
               <div className="space-y-3">
-                {subNavItems.map((item, index) => (
+                {subNavItems.map((item) => (
                   <a
-                    key={index}
-                    href="#"
+                    key={item.label}
+                    href={item.href}
+                    onClick={closeMobileMenu}
                     className="block py-3 border-b border-gray-800"
                   >
-                    <span className="text-white font-medium block">{item.name}</span>
-                    <span className="text-gray-500 text-sm">{item.value}</span>
+                    <span className="text-white font-medium block">{item.label}</span>
+                    <span className="text-gray-500 text-sm">Перейти к рубрикам</span>
                   </a>
                 ))}
               </div>
@@ -171,13 +184,14 @@ export default function Header() {
                 Меню
               </h3>
               <div className="space-y-3">
-                {mainNavItems.map((item, index) => (
+                {mainNavItems.map((item) => (
                   <a
-                    key={index}
-                    href="#"
+                    key={item.label}
+                    href={item.href}
+                    onClick={closeMobileMenu}
                     className="block py-2 text-gray-300 hover:text-[#C9A962] transition-colors"
                   >
-                    {item}
+                    {item.label}
                   </a>
                 ))}
               </div>

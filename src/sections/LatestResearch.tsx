@@ -90,7 +90,7 @@ export default function LatestResearch() {
           </p>
         </div>
         <a
-          href="#"
+          href="/#latest"
           className="inline-flex items-center gap-2 text-[#C9A962] hover:text-[#B8984F] transition-colors text-sm font-medium"
         >
           Архив исследований

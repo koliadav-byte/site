@@ -243,7 +243,7 @@ export default function CategoryGrid() {
                 {/* View All Link */}
                 <div className="mt-6 text-right">
                   <a
-                    href="#"
+                    href="/#rubrics"
                     className="inline-flex items-center gap-2 text-[#C9A962] hover:text-[#B8984F] transition-colors text-sm font-medium"
                   >
                     Все материалы раздела

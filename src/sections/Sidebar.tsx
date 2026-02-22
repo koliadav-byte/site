@@ -64,7 +64,7 @@ export default function Sidebar() {
             </button>
 
             <div className="flex items-center gap-3 text-sm">
-              <a href="#" className="inline-flex items-center gap-2 text-gray-200 hover:text-white transition-colors">
+              <a href="/#subscribe" className="inline-flex items-center gap-2 text-gray-200 hover:text-white transition-colors">
                 <MessageCircle className="w-4 h-4 text-[#C9A962]" />
                 Telegram
               </a>

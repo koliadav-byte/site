@@ -5,6 +5,9 @@
 @tailwind utilities;
 
 @layer base {
+  html { scroll-behavior: smooth; }
+  section[id] { scroll-margin-top: 140px; }
+
   :root {
     --background: 0 0% 4%;
     --foreground: 0 0% 100%;
@@ -38,6 +41,9 @@
 }
 
 @layer base {
+  html { scroll-behavior: smooth; }
+  section[id] { scroll-margin-top: 140px; }
+
   * {
     @apply border-border;
   }

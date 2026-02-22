@@ -92,13 +92,13 @@ export default function Footer() {
             </p>
             <div className="flex items-center gap-4">
               <a
-                href="#"
+                href="/#subscribe"
                 className="w-10 h-10 bg-[#111111] border border-gray-800 rounded-lg flex items-center justify-center hover:border-[#C9A962] hover:bg-[#161616] transition-all"
               >
                 <Linkedin className="w-5 h-5 text-gray-400 hover:text-[#C9A962]" />
               </a>
               <a
-                href="#"
+                href="/#subscribe"
                 className="w-10 h-10 bg-[#111111] border border-gray-800 rounded-lg flex items-center justify-center hover:border-[#C9A962] hover:bg-[#161616] transition-all"
               >
                 <Send className="w-5 h-5 text-gray-400 hover:text-[#C9A962]" />
@@ -115,7 +115,7 @@ export default function Footer() {
                   {section.links.map((link) => (
                     <li key={link}>
                       <a
-                        href="#"
+                        href="/#subscribe"
                         className="text-gray-400 hover:text-[#C9A962] transition-colors text-sm"
                       >
                         {link}
@@ -132,13 +132,13 @@ export default function Footer() {
         <div className="pt-8 border-t border-gray-800">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <div className="flex flex-wrap justify-center md:justify-start gap-6 text-sm text-gray-500">
-              <a href="#" className="hover:text-[#C9A962] transition-colors">
+              <a href="/#subscribe" className="hover:text-[#C9A962] transition-colors">
                 Политика конфиденциальности
               </a>
-              <a href="#" className="hover:text-[#C9A962] transition-colors">
+              <a href="/#subscribe" className="hover:text-[#C9A962] transition-colors">
                 Пользовательское соглашение
               </a>
-              <a href="#" className="hover:text-[#C9A962] transition-colors">
+              <a href="/#subscribe" className="hover:text-[#C9A962] transition-colors">
                 Карта сайта
               </a>
             </div>

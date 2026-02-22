@@ -57,7 +57,7 @@ export default function SubscribeContact() {
 
             <div className="flex items-center gap-3 text-sm">
               <a
-                href="#"
+                href="/#subscribe"
                 className="inline-flex items-center gap-2 text-gray-200 hover:text-white transition-colors"
               >
                 <MessageCircle className="w-4 h-4 text-[#C9A962]" />

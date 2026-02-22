@@ -46,38 +46,56 @@ function App() {
   return (
     <div className="min-h-screen bg-[#0A0A0A]">
       <Header />
+
       <main className="pt-[120px]">
-        <Hero />
+        <section id="top">
+          <Hero />
+        </section>
 
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex gap-8">
             <div className="flex-1">
               {/* 1) Navigator as the intellectual center */}
-              <MostImportant />
+              <section id="navigator" className="animate-section">
+                <MostImportant />
+              </section>
 
               {/* 2) What we do */}
-              <WhatWeDo />
+              <section id="what-we-do" className="animate-section">
+                <WhatWeDo />
+              </section>
 
               {/* 3) Products / Access */}
-              <ProductsAccess />
+              <section id="products" className="animate-section">
+                <ProductsAccess />
+              </section>
 
               {/* 4) Latest research */}
-              <LatestResearch />
+              <section id="latest" className="animate-section">
+                <LatestResearch />
+              </section>
 
               {/* 5) Rubrics */}
-              <Rubrics />
+              <section id="rubrics" className="animate-section">
+                <Rubrics />
+              </section>
 
               {/* 6) Cadence / Calendar */}
-              <CadenceCalendar />
+              <section id="calendar" className="animate-section">
+                <CadenceCalendar />
+              </section>
 
               {/* 7) Subscribe / Contact */}
-              <SubscribeContact />
+              <section id="subscribe" className="animate-section">
+                <SubscribeContact />
+              </section>
             </div>
 
             <Sidebar />
           </div>
         </div>
       </main>
+
       <Footer />
     </div>
   );
